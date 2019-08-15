@@ -8,15 +8,32 @@ namespace dependadot
     {
         static void Main(string[] args)
         {
-            if (!(args.Length == 1 &&
-                Directory.Exists(args[0]))
-            )
+            var path = string.Empty;
+
+            if (Console.IsInputRedirected)
             {
-                WriteLine("Must specify a repo root directory as input");
+                var line = In.ReadLine();
+                if (line is object)
+                {
+                    path = line;
+                }
+                else
+                {
+                    Error();
+                    return;
+                }
+            }
+            else if (args.Length == 1 &&
+                Directory.Exists(args[0]))
+            {
+                path = args[0];
+            }
+            else
+            {
+                Error();
                 return;
             }
 
-            var path = args[0];
             var printboilerplate = true;
 
             foreach (var file in Directory.EnumerateFiles(path,"*.*",SearchOption.AllDirectories))
@@ -47,6 +64,11 @@ namespace dependadot
         {
             var boilerplate = "version: 1\n\nupdate_configs:";
             WriteLine(boilerplate);
+        }
+
+        static void Error()
+        {
+            WriteLine("Must specify a repo root directory as input");
         }
     }
 }
