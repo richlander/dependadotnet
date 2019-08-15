@@ -8,13 +8,17 @@ Dependabot works out of the box if you have a solution (`.sln`) or project file 
 
 `dependadotnet [path-to-repo-root]`
 
-Alternatively, if you are in the repo root, you can use pass the path via std-in:
+Alternatively, if you are in the repo root, you can use the following pattern to avoid needing to write the path:
+
+`dependadotnet .`
+
+The tool writes to stdout. The following pattern is recommended to generate the dependabot config file:
+
+`dependadotnet . > .dependabot\config.yml`
+
+It also supports passing the path via stdin, here demonstrated with `pwd` (for macOS and Linux).
 
 `pwd | dependadotnet`
-
-The tool writes output to std-out. The following pattern is recommended to generate the dependabot config file:
-
-`pwd | dependadotnet > .dependabot\config.yml`
 
 ## Example
 
