@@ -52,10 +52,11 @@ namespace dependadot
                       update_schedule: "daily"
                     */
 
+                    var filename = Path.GetFileName(file);
                     var parentDir = Path.GetDirectoryName(file);
                     var relativeDir = parentDir!.Substring(path.Length);
                     WriteLine( "  - package_manager: \"dotnet:nuget\"");
-                    WriteLine($"    directory: {relativeDir}");
+                    WriteLine($"    directory: {relativeDir} #{filename}");
                     WriteLine( "    update_schedule: \"daily\"");
                 }
             }
