@@ -49,23 +49,36 @@ namespace dependadot
                     /* pattern:
                     - package_manager: "dotnet:nuget"
                       directory: "/one"
-                      update_schedule: "daily"
+                      update_schedule: "live"
                     */
 
                     var filename = Path.GetFileName(file);
                     var parentDir = Path.GetDirectoryName(file);
-                    var relativeDir = parentDir!.Substring(path.Length);
-                    WriteLine( "  - package_manager: \"dotnet:nuget\"");
-                    WriteLine($"    directory: {relativeDir} #{filename}");
-                    WriteLine( "    update_schedule: \"daily\"");
+                    var relativeDir = string.Empty;
+
+                    if (parentDir == null ||
+                        parentDir.Length == path.Length)
+                        {
+                            relativeDir="/";
+                        }
+                        else
+                        {
+                            relativeDir = parentDir.Substring(path.Length).Replace('\\','/');
+                        }
+                    WriteLine( 
+$@"  - package_manager: ""dotnet:nuget""
+    directory: ""{relativeDir}"" #{filename}
+    update_schedule: ""live""");
                 }
             }
         }
 
         static void PrintBoilerPlate()
         {
-            var boilerplate = "version: 1\n\nupdate_configs:";
-            WriteLine(boilerplate);
+            WriteLine(
+@"version: 1
+
+update_configs:");
         }
 
         static void Error()

@@ -2,7 +2,26 @@
 
 [Dependabot](https://dependabot.com/) is a service for automatically updating dependencies listed in project files for various languages, including [.NET](https://dependabot.com/dotnet/).
 
-Dependabot works out of the box if you have a solution (`.sln`) or project file (like `.csproj`) at the root. It also apparently supports `packages.config`. If those assets are [nested within your repo](https://github.com/dependabot/feedback/issues/632), then Dependabot won't find them. You can specify them via the Dependabot web configuration UI, but that's not fun if you have lots of projects. Instead, you can generate a configuration file of all your projects. That's what this tool generates.
+Dependabot works out of the box if you have a solution (`.sln`) or project file (like `.csproj`) at the root. It also apparently supports `packages.config`.
+
+Examples of projects using various patterns with Dependabot:
+
+- Solution at root -- [dustinchilson/NLog.Targets.GraylogHttp](https://github.com/dustinchilson/NLog.Targets.GraylogHttp)
+NLog.Targets.GraylogHttp)
+- Config at root -- [PowerShell/PowerShell](https://github.com/PowerShell/PowerShell)
+
+
+If those assets are [nested within your repo](https://github.com/dependabot/feedback/issues/632), then Dependabot won't find them. You can specify them via the Dependabot web configuration UI, but that's not fun if you have lots of projects. Instead, you can generate a configuration file of all your projects. That's what this tool generates.
+
+## Install Tool
+
+This tool is currently only available as source, but will (hopefully) be distributed as a .NET Core tool on NuGet.org. Until then, you can build and install it yourself with the following instructions:
+
+```console
+C:\git\dependadotnet\src\dependadotnet>dotnet pack -o nupkg -c release
+
+C:\git\dependadotnet\src\dependadotnet>dotnet tool install -g dependadotnet --add-source .\nupkg
+```
 
 ## Usage
 

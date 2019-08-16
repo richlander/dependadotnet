@@ -1,20 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>exe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup>
-    <Description>A simple .NET Core global tool called "dotnetsay".</Description>
+    <Description>A simple .NET Core tool for generating Dependabot config for .NET.</Description>
     <LangVersion>preview</LangVersion>
-    <VersionPrefix>2.1.4</VersionPrefix>
-    <Authors>.NET Team</Authors>
-    <Product>dependadot</Product>
-    <Copyright>MIT</Copyright>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <Authors>richlander</Authors>
+    <Product>dependadotnet</Product>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageLicenseUrl>https://github.com/dotnet/core/blob/master/LICENSE.TXT</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/dotnet/core/blob/master/samples/dotnetsay/README.md</PackageProjectUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <DebugType>embedded</DebugType>
