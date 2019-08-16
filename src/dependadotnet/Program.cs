@@ -6,6 +6,9 @@ namespace dependadot
 {
     class Program
     {
+        private static string[] s_patterns = new string[]
+    {".csproj", ".fsproj", ".vbproj"};
+
         static void Main(string[] args)
         {
             var path = string.Empty;
@@ -38,7 +41,7 @@ namespace dependadot
 
             foreach (var file in Directory.EnumerateFiles(path,"*.*",SearchOption.AllDirectories))
             {
-                if (Project.IsProject(file))
+                if (IsProject(file))
                 {
                     if (printboilerplate)
                     {
@@ -85,6 +88,15 @@ update_configs:");
         static void Error()
         {
             WriteLine("Must specify a repo root directory as input");
+        }
+
+        public static bool IsProject(string filename)
+        {
+            var p = s_patterns;
+            return
+                filename.EndsWith(p[0]) |
+                filename.EndsWith(p[1]) |
+                filename.EndsWith(p[2]);
         }
     }
 }
