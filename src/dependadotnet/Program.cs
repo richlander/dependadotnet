@@ -7,13 +7,13 @@ namespace dependadot
     class Program
     {
         private static string[] s_patterns = new string[]
-    {".csproj", ".fsproj", ".vbproj"};
+            {".csproj", ".fsproj", ".vbproj"};
 
         static void Main(string[] args)
         {
             var path = string.Empty;
 
-            if (Console.IsInputRedirected)
+            if (IsInputRedirected)
             {
                 var line = In.ReadLine();
                 if (line is object)
@@ -37,18 +37,12 @@ namespace dependadot
                 return;
             }
 
-            var printboilerplate = true;
+            PrintBoilerPlate();
 
-            foreach (var file in Directory.EnumerateFiles(path,"*.*",SearchOption.AllDirectories))
+            foreach (var file in Directory.EnumerateFiles(path, "*.*proj", SearchOption.AllDirectories))
             {
                 if (IsProject(file))
                 {
-                    if (printboilerplate)
-                    {
-                        PrintBoilerPlate();
-                        printboilerplate = false;
-                    }
-
                     /* pattern:
                     - package_manager: "dotnet:nuget"
                       directory: "/one"
@@ -61,14 +55,14 @@ namespace dependadot
 
                     if (parentDir == null ||
                         parentDir.Length == path.Length)
-                        {
-                            relativeDir="/";
-                        }
-                        else
-                        {
-                            relativeDir = parentDir.Substring(path.Length).Replace('\\','/');
-                        }
-                    WriteLine( 
+                    {
+                        relativeDir = "/";
+                    }
+                    else
+                    {
+                        relativeDir = parentDir.Substring(path.Length).Replace('\\','/');
+                    }
+                    WriteLine(
 $@"  - package_manager: ""dotnet:nuget""
     directory: ""{relativeDir}"" # {filename}
     update_schedule: ""live""");
@@ -92,11 +86,10 @@ update_configs:");
 
         public static bool IsProject(string filename)
         {
-            var p = s_patterns;
             return
-                filename.EndsWith(p[0]) |
-                filename.EndsWith(p[1]) |
-                filename.EndsWith(p[2]);
+                filename.EndsWith(s_patterns[0]) ||
+                filename.EndsWith(s_patterns[1]) ||
+                filename.EndsWith(s_patterns[2]);
         }
     }
 }
