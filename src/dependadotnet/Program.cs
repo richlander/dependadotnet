@@ -48,7 +48,8 @@ namespace dependadot
                         - package-ecosystem: nuget
                         directory: "/src/netlandingpage"
                         schedule:
-                            interval: daily
+                            interval: weekly
+                            day: sunday
                         open-pull-requests-limit: 10
                       */
 
@@ -76,7 +77,8 @@ namespace dependadot
 $@"- package-ecosystem: nuget
   directory: ""{relativeDir}"" # {filename}
   schedule:
-    interval: daily
+    interval: ""weekly""
+    day: ""sunday""
   open-pull-requests-limit: 10");
                     }
                 }
