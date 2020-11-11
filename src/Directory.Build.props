@@ -1,0 +1,23 @@
+﻿
+<Project>
+ <!--
+     Modeled after: https://github.com/dotnet/core/blob/master/samples/Directory.Build.props
+ -->
+
+    <PropertyGroup>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <DebugType>embedded</DebugType>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(OfficialBuild)' == 'true'">
+        <Configuration>release</Configuration>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+        <DebugType>portable</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.0-beta-20204-02" PrivateAssets="All"/>
+    </ItemGroup>
+
+</Project>
